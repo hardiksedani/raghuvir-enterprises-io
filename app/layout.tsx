@@ -7,7 +7,12 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Raghuvir Enterprises",
   description: "E-commerce store with a modern design",
+  other: {
+    "security-verification":
+      "secscan-verify-a364b99a1c57b0429ee2d60ea5794d7f",
+  },
 };
+
 
 export default function RootLayout({
   children,

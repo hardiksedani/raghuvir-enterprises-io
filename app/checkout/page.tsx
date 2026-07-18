@@ -6,8 +6,15 @@ import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+<<<<<<< HEAD
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Input } from '@/components/ui/Input';
+=======
+import { useToast } from '@/components/ui/Toast';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
+import { Input } from '@/components/ui/Input';
+import { Textarea } from '@/components/ui/Textarea';
+>>>>>>> d4b4a93 (update code)
 import { Label } from '@/components/ui/Label';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -77,8 +84,15 @@ export default function CheckoutPage() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
+<<<<<<< HEAD
   });
 
+=======
+    address: '',
+  });
+
+  const { showToast } = useToast();
+>>>>>>> d4b4a93 (update code)
   const total = getTotalAmount();
 
   // FIX: Handle empty cart redirection inside useEffect
@@ -94,6 +108,10 @@ export default function CheckoutPage() {
       setFormData({
         name: profile.full_name || '',
         phone: profile.phone || '',
+<<<<<<< HEAD
+=======
+        address: '',
+>>>>>>> d4b4a93 (update code)
       });
     }
   }, [profile]);
@@ -144,12 +162,21 @@ export default function CheckoutPage() {
   // Handle Razorpay payment
   const handleRazorpayPayment = async () => {
     if (!razorpayLoaded || !window.Razorpay) {
+<<<<<<< HEAD
       alert('Payment gateway is loading. Please wait a moment and try again.');
       return;
     }
 
     if (!formData.name.trim() || !formData.phone.trim()) {
       setError('Please fill in your name and phone number first');
+=======
+      showToast('Payment gateway is loading. Please wait and try again.', 'warning');
+      return;
+    }
+
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.address.trim()) {
+      setError('Please fill in your name, phone, and delivery address first');
+>>>>>>> d4b4a93 (update code)
       return;
     }
 
@@ -205,7 +232,11 @@ export default function CheckoutPage() {
             // Create order in database
             await createOrder(verifyData.payment_id);
           } else {
+<<<<<<< HEAD
             alert('Payment verification failed. Please contact support.');
+=======
+            showToast('Payment verification failed. Please contact support.', 'error');
+>>>>>>> d4b4a93 (update code)
             setLoading(false);
           }
         },
@@ -229,7 +260,11 @@ export default function CheckoutPage() {
       // Type fixed here: response is explicitly typed
       razorpay.on('payment.failed', function (response: RazorpayErrorResponse) {
         console.error('Payment failed:', response.error);
+<<<<<<< HEAD
         alert(`Payment failed: ${response.error.description || 'Unknown error'}`);
+=======
+        showToast(`Payment failed: ${response.error.description || 'Unknown error'}`, 'error');
+>>>>>>> d4b4a93 (update code)
         setLoading(false);
       });
 
@@ -245,7 +280,11 @@ export default function CheckoutPage() {
   const createOrder = async (paymentId: string) => {
     try {
       if (!user) {
+<<<<<<< HEAD
         alert('Session expired. Please login again.');
+=======
+        showToast('Session expired. Please login again.', 'error');
+>>>>>>> d4b4a93 (update code)
         router.push('/login');
         setLoading(false);
         return;
@@ -253,7 +292,11 @@ export default function CheckoutPage() {
 
       const deliveryTime = getDeliveryTime();
 
+<<<<<<< HEAD
       const { error } = await supabase
+=======
+      const { data, error } = await supabase
+>>>>>>> d4b4a93 (update code)
         .from('orders')
         .insert([
           {
@@ -261,6 +304,10 @@ export default function CheckoutPage() {
             customer_name: formData.name,
             customer_phone: formData.phone,
             customer_type: customerType,
+<<<<<<< HEAD
+=======
+            delivery_address: formData.address,
+>>>>>>> d4b4a93 (update code)
             items: cart,
             total_amount: total,
             upi_transaction_id: paymentId,
@@ -271,6 +318,7 @@ export default function CheckoutPage() {
 
       if (error) throw error;
 
+<<<<<<< HEAD
       clearCart();
 
       const successMessage = `Order Confirmed!\n\nYour order has been placed successfully.\n\nPayment Method: Razorpay Payment\n Payment ID: ${paymentId}\n Delivery: ${deliveryTime}\n\nThank you for your order!`;
@@ -280,6 +328,26 @@ export default function CheckoutPage() {
     } catch (error) {
       console.error('Error creating order:', error);
       alert('Order creation failed. Please contact support with your payment ID.');
+=======
+      // Trigger WhatsApp notification asynchronously
+      if (data && data[0]) {
+        void fetch('/api/order-notify', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ orderId: data[0].id }),
+        }).catch((err) => console.error('Error triggering WhatsApp notification:', err));
+      }
+
+      clearCart();
+
+      showToast(`Order confirmed! Delivery: ${deliveryTime}. Payment ID: ${paymentId}`, 'success');
+      router.push('/orders');
+    } catch (error) {
+      console.error('Error creating order:', error);
+      showToast('Order creation failed. Please contact support with your payment ID.', 'error');
+>>>>>>> d4b4a93 (update code)
       setLoading(false);
     }
   };
@@ -294,8 +362,13 @@ export default function CheckoutPage() {
       return;
     }
 
+<<<<<<< HEAD
     if (!formData.name.trim() || !formData.phone.trim()) {
       setError('Please fill in your name and phone number');
+=======
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.address.trim()) {
+      setError('Please fill in your name, phone, and delivery address');
+>>>>>>> d4b4a93 (update code)
       return;
     }
 
@@ -305,7 +378,11 @@ export default function CheckoutPage() {
       try {
         const deliveryTime = getDeliveryTime();
 
+<<<<<<< HEAD
         const { error } = await supabase
+=======
+        const { data, error } = await supabase
+>>>>>>> d4b4a93 (update code)
           .from('orders')
           .insert([
             {
@@ -313,6 +390,10 @@ export default function CheckoutPage() {
               customer_name: formData.name,
               customer_phone: formData.phone,
               customer_type: customerType,
+<<<<<<< HEAD
+=======
+              delivery_address: formData.address,
+>>>>>>> d4b4a93 (update code)
               items: cart,
               total_amount: total,
               upi_transaction_id: 'COD',
@@ -323,11 +404,28 @@ export default function CheckoutPage() {
 
         if (error) throw error;
 
+<<<<<<< HEAD
         clearCart();
 
         const successMessage = ` Order Confirmed!\n\nYour order has been placed successfully.\n\n Payment Method: Cash on Delivery\n Delivery: ${deliveryTime}\n\nThank you for your order!`;
 
         alert(successMessage);
+=======
+        // Trigger WhatsApp notification asynchronously
+        if (data && data[0]) {
+          void fetch('/api/order-notify', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ orderId: data[0].id }),
+          }).catch((err) => console.error('Error triggering WhatsApp notification:', err));
+        }
+
+        clearCart();
+
+        showToast(`Order confirmed! COD payment. Delivery: ${deliveryTime}`, 'success');
+>>>>>>> d4b4a93 (update code)
         router.push('/orders');
       } catch (error) {
         console.error('Error placing order:', error);
@@ -374,8 +472,20 @@ export default function CheckoutPage() {
   return (
     <main className="min-h-screen py-16">
       <div className="container-page">
+<<<<<<< HEAD
         <div className="mb-8 motion-safe:animate-fade-in">
           <h1 className="text-4xl font-bold mb-2">Checkout</h1>
+=======
+        <div className="mb-8 motion-safe:animate-fade-in space-y-3">
+          <nav className="flex items-center gap-2 text-sm text-[rgb(var(--muted))]">
+            <Link href="/">Home</Link>
+            <span>›</span>
+            <Link href="/cart">Cart</Link>
+            <span>›</span>
+            <span className="text-[rgb(var(--text))] font-medium">Checkout</span>
+          </nav>
+          <h1 className="text-4xl font-bold">Checkout</h1>
+>>>>>>> d4b4a93 (update code)
           <p className="text-[rgb(var(--muted))]">Complete your order securely</p>
         </div>
 
@@ -529,6 +639,21 @@ export default function CheckoutPage() {
                     />
                   </div>
 
+<<<<<<< HEAD
+=======
+                  <div className="space-y-2">
+                    <Label htmlFor="address">Delivery Address *</Label>
+                    <Textarea
+                      id="address"
+                      required
+                      rows={3}
+                      value={formData.address}
+                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                      placeholder="Your complete delivery address (where we should deliver the product)"
+                    />
+                  </div>
+
+>>>>>>> d4b4a93 (update code)
 
                   <div className="p-4 bg-[rgb(var(--elevated))] rounded-xl border border-[rgb(var(--border))]">
                     <div className="text-sm text-[rgb(var(--muted))]">

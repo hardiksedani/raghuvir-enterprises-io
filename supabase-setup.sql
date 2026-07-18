@@ -31,6 +31,10 @@ CREATE TABLE IF NOT EXISTS orders (
   customer_name TEXT NOT NULL,
   customer_phone TEXT NOT NULL,
   customer_type TEXT NOT NULL CHECK (customer_type IN ('retailer', 'dealer')),
+<<<<<<< HEAD
+=======
+  delivery_address TEXT,
+>>>>>>> d4b4a93 (update code)
   items JSONB NOT NULL,
   total_amount DECIMAL(10, 2) NOT NULL,
   upi_transaction_id TEXT NOT NULL,

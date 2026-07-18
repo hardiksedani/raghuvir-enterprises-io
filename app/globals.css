@@ -172,12 +172,48 @@
 }
 
 @keyframes fade {
+<<<<<<< HEAD
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
   }
+=======
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+>>>>>>> d4b4a93 (update code)
 }
 
 /* Utility Classes */
@@ -205,6 +241,58 @@
   .btn-base {
     @apply inline-flex items-center justify-center gap-2 rounded-2xl font-medium transition-all motion-safe:transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary))] focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
   }
+<<<<<<< HEAD
+=======
+
+  .animate-toast-in {
+    animation: toast-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--primary) / 0.15) 0%,
+      rgb(var(--accent) / 0.08) 35%,
+      rgb(var(--secondary) / 0.06) 65%,
+      transparent 100%
+    );
+  }
+
+  .glass-card {
+    @apply bg-[rgb(var(--surface))]/80 backdrop-blur-sm border border-[rgb(var(--border))] rounded-2xl;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--elevated)) 25%,
+      rgb(var(--border)) 50%,
+      rgb(var(--elevated)) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+>>>>>>> d4b4a93 (update code)
 }
 
 /* Hide Next.js dev overlay and dev tools */

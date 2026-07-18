@@ -11,7 +11,6 @@ import { useAuth } from '@/lib/auth';
 import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-import { ThemeToggle } from '@/components/layout/ThemeToggle';
 import { cn } from '@/lib/utils';
 
 export default function Navbar() {
@@ -267,8 +266,6 @@ export default function Navbar() {
                   </button>
                 </>
               )}
-
-              <ThemeToggle />
             </div>
           </div>
         </div>

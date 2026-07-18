@@ -108,17 +108,10 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-[rgb(var(--border))]">
-        <div className="container-page py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-[rgb(var(--muted))]">
-            © {new Date().getFullYear()} Raghuvir Enterprises. All rights reserved.
+        <div className="container-page py-5 flex justify-center">
+          <p className="text-xs text-[rgb(var(--muted))] text-center">
+            © 2026 Raghuvir Enterprises. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <span className="text-xs text-[rgb(var(--muted))]">Made with ❤️ in India</span>
-            <div className="flex gap-3">
-              <Link href="/privacy" className="text-xs text-[rgb(var(--muted))] hover:text-[rgb(var(--text))] transition-colors">Privacy</Link>
-              <Link href="/terms" className="text-xs text-[rgb(var(--muted))] hover:text-[rgb(var(--text))] transition-colors">Terms</Link>
-            </div>
-          </div>
         </div>
       </div>
     </footer>

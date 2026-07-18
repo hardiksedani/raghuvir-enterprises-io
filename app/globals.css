@@ -1,32 +1,7 @@
 ﻿@import "tailwindcss";
 
-/* Design System - Dark Mode (Default) */
+/* Design System - Light Mode (Default) */
 :root {
-  /* Core Colors - Dark Theme */
-  --bg: 11 16 32;          /* #0B1020 Deep navy background */
-  --surface: 17 23 42;     /* #11172A */
-  --elevated: 22 30 51;    /* #161E33 */
-  --primary: 91 155 255;   /* #5B9BFF Azure */
-  --primary-600: 62 126 230; /* #3E7EE6 */
-  --secondary: 240 180 41; /* #F0B429 Amber */
-  --accent: 124 246 214;   /* #7CF6D6 Mint */
-  --text: 234 240 255;     /* #EAF0FF */
-  --muted: 166 178 208;    /* #A6B2D0 */
-  --border: 42 53 83;      /* #2A3553 */
-  --success: 34 197 94;    /* #22C55E */
-  --warning: 245 158 11;   /* #F59E0B */
-  --danger: 239 68 68;     /* #EF4444 */
-  
-  /* Radius tokens */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-2xl: 32px;
-}
-
-/* Light Theme Override */
-:root.light {
   --bg: 255 255 255;       /* #FFFFFF */
   --surface: 248 250 252;  /* #F8FAFC */
   --elevated: 255 255 255; /* #FFFFFF */
@@ -37,9 +12,16 @@
   --text: 15 23 42;        /* #0F172A */
   --muted: 71 85 105;      /* #475569 */
   --border: 226 232 240;   /* #E2E8F0 */
-  --success: 34 197 94;
-  --warning: 245 158 11;
-  --danger: 239 68 68;
+  --success: 34 197 94;    /* #22C55E */
+  --warning: 245 158 11;   /* #F59E0B */
+  --danger: 239 68 68;     /* #EF4444 */
+  
+  /* Radius tokens */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
 }
 
 @layer base {

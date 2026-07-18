@@ -126,10 +126,10 @@ function HomeContent() {
         <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-[rgb(var(--accent))]/5 blur-3xl pointer-events-none" />
 
         <div className="relative container-page">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          <div className="grid place-items-center gap-12 lg:gap-8">
 
-            {/* Left: text content */}
-            <div className="text-center lg:text-left space-y-8">
+            {/* Centered hero content */}
+            <div className="text-center space-y-8 max-w-2xl mx-auto">
               {/* Announcement pill — gold style */}
               <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-300 text-sm font-semibold">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse shrink-0" />
@@ -143,12 +143,12 @@ function HomeContent() {
                 <span className="gradient-text">Wholesale Partner</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-[rgb(var(--muted))] lg:max-w-lg leading-relaxed">
+              <p className="text-lg sm:text-xl text-[rgb(var(--muted))] leading-relaxed">
                 Premium products at unbeatable prices — crafted for retailers and dealers who demand the best.
               </p>
 
               {/* CTA buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a
                   href="#products"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-[rgb(var(--primary))] text-[rgb(var(--bg))] font-bold text-base shadow-[0_8px_24px_rgb(var(--primary)/0.35)] hover:opacity-90 hover:-translate-y-0.5 transition-all"
@@ -163,78 +163,6 @@ function HomeContent() {
                   Create Account
                   <ChevronRight className="w-4 h-4" />
                 </Link>
-              </div>
-
-              {/* Inline trust row */}
-              <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-start text-xs text-[rgb(var(--muted))] font-medium">
-                <div className="flex items-center gap-1.5">
-                  <Shield className="w-3.5 h-3.5 text-green-400" />
-                  Razorpay Secured
-                </div>
-                <span className="text-[rgb(var(--border))]">·</span>
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-                  Quality Guaranteed
-                </div>
-                <span className="text-[rgb(var(--border))]">·</span>
-                <div className="flex items-center gap-1.5">
-                  <Truck className="w-3.5 h-3.5 text-[rgb(var(--primary))]" />
-                  Fast Dispatch
-                </div>
-              </div>
-            </div>
-
-            {/* Right: hero visual card */}
-            <div className="hidden lg:flex justify-end">
-              <div className="relative w-full max-w-md">
-                <div className="absolute -right-10 top-6 h-40 w-40 rounded-full bg-[rgb(var(--accent))]/10 blur-3xl" />
-                <div className="relative glass-card border border-white/10 bg-[rgb(var(--surface))]/80 p-8 shadow-2xl">
-                  <div className="flex items-center justify-between mb-6">
-                    <div>
-                      <p className="text-xs uppercase tracking-[0.3em] text-[rgb(var(--muted))]">Wholesale Top Picks</p>
-                      <h3 className="text-2xl font-bold">Featured products</h3>
-                    </div>
-                    <span className="rounded-full bg-[rgb(var(--primary))]/15 text-[rgb(var(--primary))] px-3 py-1 text-xs font-semibold">
-                      Best seller
-                    </span>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="rounded-[2rem] bg-[rgb(var(--bg))]/90 border border-white/10 p-5 shadow-sm">
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-sm text-[rgb(var(--muted))]">Swami Narayan Farali Ata</p>
-                          <p className="mt-2 text-xl font-bold">₹2,500</p>
-                        </div>
-                        <span className="rounded-full bg-amber-400/15 text-amber-300 px-3 py-1 text-[11px] font-semibold">
-                          10× pack
-                        </span>
-                      </div>
-                      <p className="mt-3 text-xs text-[rgb(var(--muted))]">Ready to ship across Maharashtra with COD support.</p>
-                    </div>
-
-                    <div className="grid gap-3">
-                      <div className="rounded-[1.75rem] border border-white/10 bg-[rgb(var(--surface))]/80 p-4">
-                        <div className="flex items-center justify-between gap-3">
-                          <div>
-                            <p className="text-sm font-semibold">Same-day dispatch</p>
-                            <p className="text-xs text-[rgb(var(--muted))]">Get stock shipped before 12 PM.</p>
-                          </div>
-                          <Truck className="w-5 h-5 text-[rgb(var(--primary))]" />
-                        </div>
-                      </div>
-                      <div className="rounded-[1.75rem] border border-white/10 bg-[rgb(var(--surface))]/80 p-4">
-                        <div className="flex items-center justify-between gap-3">
-                          <div>
-                            <p className="text-sm font-semibold">COD Payments</p>
-                            <p className="text-xs text-[rgb(var(--muted))]">Flexible payment for retailers.</p>
-                          </div>
-                          <Zap className="w-5 h-5 text-purple-400" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 

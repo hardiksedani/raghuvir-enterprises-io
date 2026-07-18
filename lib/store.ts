@@ -1,4 +1,4 @@
-import { create } from 'zustand';
+﻿import { create } from 'zustand';
 import { CustomerType } from './supabase';
 
 interface CartItem {
@@ -18,12 +18,11 @@ interface StoreState {
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
   getTotalAmount: () => number;
-<<<<<<< HEAD
-=======
+
   wishlist: string[];
   toggleWishlist: (productId: string) => void;
   isWishlisted: (productId: string) => boolean;
->>>>>>> d4b4a93 (update code)
+
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -56,8 +55,7 @@ export const useStore = create<StoreState>((set, get) => ({
     const state = get();
     return state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   },
-<<<<<<< HEAD
-=======
+
 
   wishlist: [],
   toggleWishlist: (productId) => set((state) => ({
@@ -66,5 +64,5 @@ export const useStore = create<StoreState>((set, get) => ({
       : [...state.wishlist, productId],
   })),
   isWishlisted: (productId) => get().wishlist.includes(productId),
->>>>>>> d4b4a93 (update code)
+
 }));

@@ -1,12 +1,5 @@
 import type { NextConfig } from "next";
 
-<<<<<<< HEAD
-const nextConfig: NextConfig = {
-  /* config options here */
-  // Disable dev indicators (the dev tools in bottom left corner)
-  // Note: This may require Next.js 13.4+ for full support
-  reactStrictMode: true,
-=======
 const securityHeaders = [
   // Prevent MIME-type sniffing
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -42,7 +35,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
->>>>>>> d4b4a93 (update code)
 };
 
 export default nextConfig;

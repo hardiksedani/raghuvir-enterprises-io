@@ -1,42 +1,6 @@
-'use client';
+﻿'use client';
 
-<<<<<<< HEAD
-import { useEffect, useState } from 'react';
-import { supabase, Product } from '@/lib/supabase';
-import ProductCard from '@/components/ProductCard';
-import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Truck, Shield, Star, Loader2 } from 'lucide-react';
 
-export default function Home() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchProducts();
-    
-    // Set up real-time subscription for product updates
-    const channel = supabase
-      .channel('products_changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'products',
-        },
-        () => {
-          // Refresh products when changes occur
-          fetchProducts();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-=======
 import { useEffect, useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { supabase, Product } from '@/lib/supabase';
@@ -86,7 +50,7 @@ function HomeContent() {
       .subscribe();
     fetchProducts();
     return () => { supabase.removeChannel(channel); };
->>>>>>> d4b4a93 (update code)
+
   }, []);
 
   const fetchProducts = async () => {
@@ -96,63 +60,18 @@ function HomeContent() {
         .from('products')
         .select('*')
         .order('created_at', { ascending: false });
-<<<<<<< HEAD
 
-      if (error) {
-        console.error('Error fetching products:', error);
-        console.error('Error details:', JSON.stringify(error, null, 2));
-        throw error;
-      }
-      
-      console.log('Products fetched successfully:', data?.length || 0, 'products');
-      if (data && data.length > 0) {
-        console.log('Sample product:', data[0]);
-      }
-      setProducts(data || []);
-    } catch (error) {
-      console.error('Exception fetching products:', error);
-=======
       if (error) throw error;
       setProducts(data || []);
     } catch {
->>>>>>> d4b4a93 (update code)
+
       setProducts([]);
     } finally {
       setLoading(false);
     }
   };
 
-<<<<<<< HEAD
-  const filteredProducts = products;
-  
-  const inStockCount = products.filter(p => p.stock > 0).length;
-  const outOfStockCount = products.filter(p => p.stock === 0).length;
 
-  return (
-    <div className="space-y-16 py-8">
-            {/* Hero Section */}
-      <section className="relative py-20 sm:py-32 container-page">
-        <div className="absolute inset-0 -z-10 bg-linear-to-br from-[rgb(var(--primary))]/10 via-[rgb(var(--accent))]/5 to-transparent" />                    
-        <div className="text-center space-y-6">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-            Welcome to{' '}
-            <span className="text-[rgb(var(--primary))]">Raghuvir Enterprises</span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-[rgb(var(--muted))] max-w-2xl mx-auto">
-            Discover quality products at unbeatable prices. Shop with confidence, whether you&apos;re a retailer or dealer.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="#products">
-              <Button intent="primary" size="lg">
-                Shop Now
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button intent="outline" size="lg">
-                Create Account
-              </Button>
-            </Link>
-=======
   const getPrice = (p: Product) =>
     customerType === 'dealer' ? p.dealer_price : p.retailer_price;
 
@@ -265,172 +184,65 @@ function HomeContent() {
               </div>
             </div>
 
-            {/* Right: live order notification mockup */}
-            <div className="hidden lg:flex items-center justify-end">
-              <div className="relative w-80">
-                {/* Glow behind the card */}
-                <div className="absolute -inset-6 bg-[radial-gradient(circle_at_50%_50%,rgb(var(--primary)/0.10),transparent_70%)] blur-2xl" />
-
-                {/* Main notification card */}
-                <div className="relative glass-card p-5 shadow-2xl">
-                  {/* WhatsApp-style header */}
-                  <div className="flex items-center gap-3 mb-4 pb-3 border-b border-[rgb(var(--border))]">
-                    <div className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-black text-sm shrink-0">
-                      W
+            {/* Right: hero visual card */}
+            <div className="hidden lg:flex justify-end">
+              <div className="relative w-full max-w-md">
+                <div className="absolute -right-10 top-6 h-40 w-40 rounded-full bg-[rgb(var(--accent))]/10 blur-3xl" />
+                <div className="relative glass-card border border-white/10 bg-[rgb(var(--surface))]/80 p-8 shadow-2xl">
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.3em] text-[rgb(var(--muted))]">Wholesale Top Picks</p>
+                      <h3 className="text-2xl font-bold">Featured products</h3>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-bold text-[rgb(var(--text))]">New Order Alert!</div>
-                      <div className="text-xs text-[rgb(var(--muted))] truncate">Raghuvir Enterprises</div>
-                    </div>
-                    <span className="text-xs text-[rgb(var(--muted))] shrink-0">Just now</span>
+                    <span className="rounded-full bg-[rgb(var(--primary))]/15 text-[rgb(var(--primary))] px-3 py-1 text-xs font-semibold">
+                      Best seller
+                    </span>
                   </div>
 
-                  {/* Order detail */}
-                  <div className="space-y-3">
-                    <div className="p-3 rounded-xl bg-[rgb(var(--elevated))] border border-[rgb(var(--border))]">
-                      <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-sm font-bold text-[rgb(var(--text))]">Rahul Sharma</span>
-                        <span className="text-sm font-bold text-[rgb(var(--primary))]">₹2,500</span>
+                  <div className="space-y-4">
+                    <div className="rounded-[2rem] bg-[rgb(var(--bg))]/90 border border-white/10 p-5 shadow-sm">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-sm text-[rgb(var(--muted))]">Swami Narayan Farali Ata</p>
+                          <p className="mt-2 text-xl font-bold">₹2,500</p>
+                        </div>
+                        <span className="rounded-full bg-amber-400/15 text-amber-300 px-3 py-1 text-[11px] font-semibold">
+                          10× pack
+                        </span>
                       </div>
-                      <div className="text-xs text-[rgb(var(--muted))] space-y-0.5">
-                        <div>📦 10× Swami Narayan Farali Ata</div>
-                        <div>📍 Akola, Maharashtra · COD Payment</div>
-                      </div>
+                      <p className="mt-3 text-xs text-[rgb(var(--muted))]">Ready to ship across Maharashtra with COD support.</p>
                     </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="py-2 rounded-lg bg-[rgb(var(--primary))] text-white text-xs font-bold text-center">
-                        Mark Ready
+
+                    <div className="grid gap-3">
+                      <div className="rounded-[1.75rem] border border-white/10 bg-[rgb(var(--surface))]/80 p-4">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <p className="text-sm font-semibold">Same-day dispatch</p>
+                            <p className="text-xs text-[rgb(var(--muted))]">Get stock shipped before 12 PM.</p>
+                          </div>
+                          <Truck className="w-5 h-5 text-[rgb(var(--primary))]" />
+                        </div>
                       </div>
-                      <div className="py-2 rounded-lg bg-[rgb(var(--elevated))] border border-[rgb(var(--border))] text-[rgb(var(--muted))] text-xs font-semibold text-center">
-                        View Order
+                      <div className="rounded-[1.75rem] border border-white/10 bg-[rgb(var(--surface))]/80 p-4">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <p className="text-sm font-semibold">COD Payments</p>
+                            <p className="text-xs text-[rgb(var(--muted))]">Flexible payment for retailers.</p>
+                          </div>
+                          <Zap className="w-5 h-5 text-purple-400" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Floating WhatsApp badge */}
-                <div className="absolute -top-3 -right-5 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-green-500/15 border border-green-500/30 text-green-400 text-[11px] font-semibold shadow-lg backdrop-blur-sm">
-                  <CheckCircle2 className="w-3 h-3" />
-                  WhatsApp Notified
-                </div>
-
-                {/* Floating customer type badge */}
-                <div className="absolute -bottom-3 -left-5 flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-[rgb(var(--secondary))]/15 border border-[rgb(var(--secondary))]/30 text-[rgb(var(--secondary))] text-[11px] font-semibold shadow-lg backdrop-blur-sm">
-                  <Star className="w-3 h-3" />
-                  Retailer Order
                 </div>
               </div>
             </div>
 
->>>>>>> d4b4a93 (update code)
           </div>
         </div>
       </section>
 
-<<<<<<< HEAD
-      {/* Products Section */}
-      <section id="products" className="space-y-8 container-page">
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl sm:text-5xl font-bold">
-            Our Products
-          </h2>
-          <p className="text-lg text-[rgb(var(--muted))] max-w-2xl mx-auto">
-            Browse through our curated collection of high-quality products
-          </p>
-          {!loading && products.length > 0 && (
-            <p className="text-sm text-[rgb(var(--muted))]">
-              Showing {products.length} {products.length === 1 ? 'product' : 'products'} • 
-              {inStockCount > 0 && ` ${inStockCount} in stock`}
-              {outOfStockCount > 0 && ` • ${outOfStockCount} out of stock`}
-            </p>
-          )}
-        </div>
 
-        {loading ? (
-          <div className="text-center py-20">
-            <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4 text-[rgb(var(--primary))]" />
-            <p className="text-lg text-[rgb(var(--muted))]">Loading products...</p>
-          </div>
-        ) : products.length === 0 ? (
-          <Card className="max-w-md mx-auto text-center py-20">
-            <CardHeader>
-              <div className="text-6xl mb-4">📦</div>
-              <CardTitle>No Products Yet</CardTitle>
-              <CardDescription>Check back soon for exciting products!</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link href="/admin">
-                <Button intent="primary">Admin Panel</Button>
-              </Link>
-            </CardContent>
-          </Card>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-            {products.length > 0 && filteredProducts.length === 0 && (
-              <Card className="max-w-md mx-auto text-center py-12">
-                <CardHeader>
-                  <CardTitle>No Products Match Filter</CardTitle>
-                  <CardDescription>
-                    Try changing the filter to see more products
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            )}
-          </>
-        )}
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 space-y-8">
-        <div className="text-center space-y-4">
-          <h2 className="text-3xl sm:text-4xl font-bold">Why Choose Us</h2>
-          <p className="text-lg text-[rgb(var(--muted))]">We provide the best shopping experience</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="text-center">
-            <CardHeader>
-              <Truck className="w-12 h-12 mx-auto mb-4 text-[rgb(var(--primary))]" />
-              <CardTitle>Fast Delivery</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Quick and reliable shipping to your doorstep
-              </CardDescription>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardHeader>
-              <Shield className="w-12 h-12 mx-auto mb-4 text-[rgb(var(--primary))]" />
-              <CardTitle>Secure Payments</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Safe and encrypted payment processing
-              </CardDescription>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardHeader>
-              <Star className="w-12 h-12 mx-auto mb-4 text-[rgb(var(--primary))]" />
-              <CardTitle>Quality Guaranteed</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Premium products with quality assurance
-              </CardDescription>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    </div>
-  );
-}
-=======
       {/* ─── TRUST STRIP ─────────────────────────── */}
       <div className="border-t border-b border-[rgb(var(--border))] bg-[rgb(var(--surface))]/60">
         <div className="container-page py-3.5">
@@ -682,4 +494,4 @@ export default function Home() {
   );
 }
 
->>>>>>> d4b4a93 (update code)
+

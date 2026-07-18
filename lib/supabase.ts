@@ -1,4 +1,4 @@
-import { createBrowserClient, createServerClient, type CookieOptions } from '@supabase/ssr';
+﻿import { createBrowserClient, createServerClient, type CookieOptions } from '@supabase/ssr';
 
 // ─────────────────────────────────────────────────────────────
 // Environment variables (REQUIRED)
@@ -69,10 +69,9 @@ export type Order = {
   customer_name: string | null;
   customer_phone: string | null;
   customer_type: CustomerType | null;
-<<<<<<< HEAD
-=======
+
   delivery_address: string | null;
->>>>>>> d4b4a93 (update code)
+
   total_amount: number;
   upi_transaction_id: string | null;
   status: 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled';

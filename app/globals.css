@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 /* Design System - Dark Mode (Default) */
 :root {
@@ -172,14 +172,7 @@
 }
 
 @keyframes fade {
-<<<<<<< HEAD
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-=======
+
   from { opacity: 0; }
   to { opacity: 1; }
 }
@@ -213,7 +206,7 @@
 @keyframes slide-in-right {
   from { opacity: 0; transform: translateX(100%); }
   to { opacity: 1; transform: translateX(0); }
->>>>>>> d4b4a93 (update code)
+
 }
 
 /* Utility Classes */
@@ -241,8 +234,7 @@
   .btn-base {
     @apply inline-flex items-center justify-center gap-2 rounded-2xl font-medium transition-all motion-safe:transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary))] focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
   }
-<<<<<<< HEAD
-=======
+
 
   .animate-toast-in {
     animation: toast-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -292,7 +284,7 @@
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
   }
->>>>>>> d4b4a93 (update code)
+
 }
 
 /* Hide Next.js dev overlay and dev tools */
